@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>📝 Clase 4</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.js"></script>
+    <script src="https://unpkg.com/ml5@1/dist/ml5.js"></script>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header>
+            <p>
+                <a href="index.html">Hola</a>
+                <a href="page-1.html">HandPose</a>
+                <a href="page-2.html">BosyPose</a>
+                <a href="page-3.html">FaceMesh</a>
+                <a href="page-4.html" >BodySegmentation</a>
+                <a href="page-5.html" class="activo" >SoundClassifier</a>
+            </p>
+            <h1>SoundClassifier</h1>
+        </header>
+
+        <main></main>
+        
+        <aside>
+            <button onclick="foto()">😀 DESCARGA</button>
+        </aside>
+    
+    <script>
+        
+        let classifier;
+
+let words = [
+  "zero",
+  "one",
+  "two",
+  "three",
+  "four",
+  "five",
+  "six",
+  "seven",
+  "eight",
+  "nine",
+  "up",
+  "down",
+  "left",
+  "right",
+  "go",
+  "stop",
+  "yes",
+  "no",
+];
+
+let predictedWord = "";
+
+function preload() {
+
+  let options = { probabilityThreshold: 0.7 };
+
+  classifier = ml5.soundClassifier("SpeechCommands18w", options);
+}
+
+function setup() {
+  createCanvas(650, 450);
+
+  classifier.classifyStart(gotResult);
+}
+
+function draw() {
+  background(250);
+
+  displayWords();
+
+  if (predictedWord !== "") {
+    fill(211, 107, 255);
+    textAlign(CENTER, CENTER);
+    textSize(64);
+    text(predictedWord, width / 2, 90);
+  }
+}
+
+function displayWords() {
+  textAlign(CENTER, CENTER);
+  textSize(32);
+  fill(96);
+  text("Say one of these words!", width / 2, 40);
+
+  let x = 125;
+  let y = 150;
+
+  for (let i = 0; i < words.length; i++) {
+    fill(158);
+    text(words[i], x, y);
+    y += 50;
+    if ((i + 1) % 6 === 0) {
+      x += 200;
+      y = 150;
+    }
+  }
+}
+
+function gotResult(results) {
+
+  console.log(results);
+
+  predictedWord = results[0].label;
+}
+
+        
+        function foto() {
+                saveCanvas("BodySegmentation.jpg");
+           }
+
+
+    </script>
+</body>
+</html>

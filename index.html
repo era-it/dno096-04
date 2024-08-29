@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />      
+        
+        <title>📝 Clase 4</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+        <script src="https://unpkg.com/ml5@1/dist/ml5.js"></script>
+        <script src="https://unpkg.com/ml5@1/dist/ml5.min.js"></script>
+
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <script src="sketch.js"></script>
+        <header>
+            <p>
+                <a href="index.html" class="activo">Hola</a>
+                <a href="page-1.html">HandPose</a>
+                <a href="page-2.html">BodyPose</a>
+                <a href="page-3.html">FaceMesh</a>
+                <a href="page-4.html">BodySegmentation</a>
+                <a href="page-5.html" >SoundClassifier</a>
+            </p>
+            <h1></h1>
+            <h2></h2>
+            <p id="aqui"></p>
+        </header>
+        <main></main>
+        <script>
+            var texto = {
+                saludo: ["¡Hola mundo!", "¡Hola universo!", "¡Hola orbe!", "¡Hola cosmos!"],
+                nombre: "Me llamo Tiare Acevedo",
+                motivo: "Tomé este curso porque antes tomé programación creativa y me gustó, además me faltaba 1 opr por tomar :p",
+            };
+            var saludando, nombrando, motivando;
+            function setup() {
+                createCanvas(windowWidth, windowHeight);
+                saludando = select("h1");
+                saludando.html(random(texto.saludo));
+                nombrando = select("h2");
+                nombrando.html(texto.nombre);
+                motivando = select("#aqui");
+                motivando.html(texto.motivo);
+            }
+            function draw() {
+                background("#1A7C59");
+                textSize(48);
+                text("🐭", mouseX, mouseY);
+            }
+            function windowResized() {
+                background("#1A7C59");
+                resizeCanvas(windowWidth, windowHeight);
+            }
+        </script>
+    </body>
+</html>
